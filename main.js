@@ -30,14 +30,29 @@ function setup() {
   video = createCapture(VIDEO);
   video.size(700, 600);
   video.hide();
-  poses = ml5.poseNet(video, function () {
-    console.log("Model loaded");
+  poseNet = ml5.poseNet(video, function () {
+    console.log("Model Loaded!");
+  });
+  poseNet.on("pose", function (results) {
+    if (results.length > 0) {
+      console.log(results);
+      rightWristX = results[0].pose.rightWrist.x;
+      rightWristY = results[0].pose.rightWrist.y;
+      scorer = results[0].pose.keypoints[9].score;
+    }
   });
 }
 
 function draw() {
   background(0);
   image(video, 0, 0, 700, 600);
+
+  if (scorer > 0.2) {
+    fill("black");
+    stroke("black");
+
+    circle(rightWristX - 15, rightWristY - 15, 30, 30);
+  }
 
   fill("black");
   stroke("black");
