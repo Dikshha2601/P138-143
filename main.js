@@ -31,6 +31,12 @@ var ball = {
   dy: 3,
 };
 
+function restart() {
+  pcscore = 0;
+  playerscore = 0;
+  loop();
+}
+
 function setup() {
   var canvas = createCanvas(700, 600);
   canvas.parent("#canvas");
@@ -163,7 +169,7 @@ function draw() {
       stroke("white");
       textSize(25);
       text("Game Over!☹☹", width / 2, height / 2);
-      text("Reload The Page!", width / 2, height / 2 + 30);
+      text("Press reatart to play again!", width / 2, height / 2 + 30);
       noLoop();
       pcscore = 0;
     }
