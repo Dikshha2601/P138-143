@@ -1,5 +1,10 @@
 /*created by prashant shukla */
 
+function preload() {
+  btp = loadSound("ball_touch_paddel.wav");
+  miss = log("missed.wav");
+}
+
 status = "";
 
 var paddle2 = 10,
@@ -142,10 +147,12 @@ function draw() {
     if (ball.x - (2.5 * ball.r) / 2 < 0) {
       if (ball.y >= paddle1Y && ball.y <= paddle1Y + paddle1Height) {
         ball.dx = -ball.dx + 0.5;
+        btp.play();
       } else {
         pcscore++;
         reset();
         navigator.vibrate(100);
+        miss.play();
       }
     }
     if (pcscore == 4) {
