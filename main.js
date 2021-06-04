@@ -6,6 +6,7 @@ function preload() {
 }
 
 status = "";
+scorer = 0;
 
 var paddle2 = 10,
   paddle1 = 10;
